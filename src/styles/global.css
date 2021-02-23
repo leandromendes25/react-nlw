@@ -3,9 +3,32 @@
     padding: 0;
     box-sizing: border-box;
 }
+:root{
+    --white:#fff;
+    --background: #f2f3f5;
+    --gray-line: #DCDDE0;
+    --text: #666666;
+    --text-highlight: #B3B9FF;
+    --title: #2E384D;
+    --red: #E83F5B;
+    --green: #4CD62B;
+    --blue: #5965E0;
+    --blue-dark: #4953b8;
+    --blue-twitters: #2AA9E0;
+}
+@media(max-width:1080px){/*Quando tiver tela <*/
+    html {
+        font-size: 93.75%;/*-1px*/
+    }
+}
+@media(max-width:720px){/*Quando tiver tela <*/
+    html {
+        font-size: 87.5%;/*-1px*/
+    }
+}
 body {
-    background-color: #f2f3f5;
-    color: #666;
+    background-color:var(--background);
+    color: var(--text); 
 }
 body, input, textarea, button {
 font: 400 16px "Inter", sans-serif;/*Peso, tamanho estilo*/
@@ -16,4 +39,37 @@ button {
 a {
     color: inherit; /*Herda cor > containers*/
     text-decoration: none; 
+}
+.container{
+    height: 100vh;
+    max-width: 992px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;/*Prox elements fiquem um abaixo do outro*/
+}
+.experience-bar {
+    display: flex;
+    align-items:center;
+}
+.experience-bar span {
+    font-size: 1rem;
+}
+.experience-bar > div {/*Pega o div mais proximo*/
+flex: 1; /*Ocupar espaço max container*/
+height: 4px; /*Não colocamos em rem > tamanho especifico*/
+border-radius: 4px;
+background: var(--gray-line);   
+margin: 0 1.5rem;
+position: relative;
+}
+.experience-bar > div > div{
+    height: 4px;
+    border-radius:4px;
+    background: var(--green)
+}
+span.current-experience{
+    position: absolute;
+    top: 12;
+    transform: translateX(-50%);
 }
