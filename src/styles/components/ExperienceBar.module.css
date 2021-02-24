@@ -1,0 +1,26 @@
+.experienceBar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .experienceBar span{
+    font-size: 1rem;
+  }
+.experienceBar > div {/*Pega o div mais proximo*/
+flex: 1; /*Ocupar espaço max container*/
+height: 4px; /*Não colocamos em rem > tamanho especifico*/
+border-radius: 4px;
+background: var(--gray-line);   
+margin: 0 1.5rem;
+position: relative;
+}
+.experienceBar > div > div{
+    height: 4px;
+    border-radius:4px;
+    background: var(--green)
+}
+span.currentExperience{
+    position: absolute;
+    top: 12;
+    transform: translateX(-50%);
+}
