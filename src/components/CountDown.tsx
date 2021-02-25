@@ -1,42 +1,21 @@
 import { useState, useEffect, useContext } from 'react';
-import { ChallengesContext } from '../contexts/ChallengesContext';
+import { CountDownContext } from '../contexts/CountDownContext';
 import styles from '../styles/components/CountDown.module.css';
-
-let countDownTimeout: NodeJS.Timeout //diz formato do time
+//Regras de negocio.. aqui
 
 export function CountDown(){
-    const {startNewChallenge} = useContext(ChallengesContext);
-
-    const[time, setTime] = useState(0.1 * 60);
-    const [isActive, setIsActive] = useState(false); 
-    const [hasFinished, setHasFinished] = useState(false);
-   
-    const minutes = Math.floor(time / 60);
-    const seconds = time % 60; 
-   
-    const [minuteLeft,  minuteRight] = String(minutes).padStart(2, '0').split('');{/*Como não passou anda o split está partindo cada character em arrays diferentes*/}
+    const {
+        minutes, seconds, 
+        hasFinished, isActive,
+         startCountDown, resetCountDown
+        } = useContext(CountDownContext);
+   //não colocamos no context - Estamos formatando dados, a parte visual precisa desses dados
+    const [minuteLeft,  minuteRight] = String(minutes).padStart(2, '0').split('');{/*Como não passou anda o split está partindo cada character em arrays
+     diferentes*/}
     const [secondLeft,  secondRight] = String(seconds).padStart(2, '0').split('');
   
-    function startCountDown() {
-    setIsActive(true);
-    }
-    function resetCountDown() {
-        clearTimeout(countDownTimeout);//cancelando o timer
-        setIsActive(false);
-        setTime(0.1 * 60)
-    }
-    useEffect(()=> { 
-         if(isActive && time > 0) {    
-       {/*como setTimeout tem retorno..*/} 
-       countDownTimeout = setTimeout(() =>{setTime(time - 1);}, 1000)}
-    else if (isActive && time == 0) {
-        setHasFinished(true);
-        setIsActive(false);//Quando chegar a 0 não vai + estar ativo, para mentar os estados como deveriam
-        startNewChallenge();
-    }
-    }, [isActive, time])
     return (                                                                    
-        <div>                                                                   {//useEffect mudar será exec dnv.}
+        <div>                                                                  
         <div className={styles.countDownContainer}>
             <div>
                 <span>{minuteLeft}</span>{/*Colocamos separados para facilitar estilização*/}
