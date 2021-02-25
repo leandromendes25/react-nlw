@@ -26,7 +26,7 @@ export function CountDown(){
                 <span>{secondLeft}</span>
                 <span>{secondRight}</span>
             </div>
-        </div>           /*Sempre que tiver mais de uma linha de retorno, parentes() por fora */}
+        </div>           {/*Sempre que tiver mais de uma linha de retorno, parentes() por fora */}
         {hasFinished ? (
              <button
              disabled
